@@ -83,6 +83,6 @@ COPY server .
 RUN yarn install
 RUN yarn build
 
-ENV PORT 8080
+EXPOSE 8080
 ENTRYPOINT node dist/index.js
 
