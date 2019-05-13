@@ -89,11 +89,17 @@ function main(): void {
     },
   });
 
-  // commands.addKeyBinding({
-  //   command: 'build-and-run',
-  //   keys: ['Shift R'] ,
-  //   selector: ''
-  // })
+  commands.addKeyBinding({
+    command: 'build-and-run',
+    keys: ['Accel R'] ,
+    selector: 'body',
+  })
+
+  commands.addKeyBinding({
+    keys: ['Accel J'],
+    selector: 'body',
+    command: 'dark-theme'
+  });
 
   let outputMenu = new Menu({ commands });
   outputMenu.title.label = 'Output';
@@ -119,6 +125,11 @@ function main(): void {
   menuBar.addMenu(themeMenu);
   menuBar.addMenu(taskMenu);
   menuBar.id = 'menuBar';
+
+  document.addEventListener('keydown', (event: KeyboardEvent) => {
+    console.log(event)
+    commands.processKeydownEvent(event);
+  });
 
   let main = new SplitPanel({
     orientation: 'vertical',
